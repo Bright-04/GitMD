@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>GitMD — Markdown Previewer</title>
+		<meta name="description" content="GitMD is a browser-based Markdown previewer with GitHub-style rendering, hosted on GitHub Pages." />
+
+		<!-- GitHub markdown styling -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown-light.min.css" crossorigin="anonymous" />
+
+		<!-- Highlight.js theme (light) - we'll switch using a class for dark mode -->
+		<link id="hljs-theme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+
+		<link rel="stylesheet" href="assets/css/style.css" />
+	</head>
+	<body class="light">
+		<header class="site-header">
+			<h1>GitMD</h1>
+			<p class="tagline">Live GitHub-style Markdown preview — static, privacy-friendly, hosted on GitHub Pages.</p>
+		</header>
+
+		<div class="toolbar" role="toolbar" aria-label="Editor toolbar">
+			<label class="file-input-label" for="fileInput">Upload .md</label>
+			<input id="fileInput" type="file" accept=".md, text/markdown, text/plain" aria-label="Upload Markdown file" />
+
+			<button id="loadSample" title="Load sample Markdown">Load sample</button>
+			<button id="clearEditor" title="Clear editor">Clear</button>
+			<button id="copyHtml" title="Copy rendered HTML">Copy HTML</button>
+
+			<div class="spacer" aria-hidden="true"></div>
+			<label class="theme-toggle">
+				<input id="themeToggle" type="checkbox" aria-label="Toggle dark mode" />
+				<span>Dark</span>
+			</label>
+		</div>
+
+		<main class="container" role="main">
+			<section class="pane editor-pane" aria-label="Markdown editor">
+				<textarea id="editor" placeholder="# Write Markdown" aria-label="Markdown editor" spellcheck="false"></textarea>
+				<div id="dropHint" class="drop-hint" aria-hidden="true">Drop a .md file here</div>
+			</section>
+
+			<section class="pane preview-pane" aria-label="Rendered preview">
+				<article id="preview" class="markdown-body" tabindex="0" aria-live="polite"></article>
+			</section>
+		</main>
+
+		<footer class="site-footer">
+			<small>GitMD — static Markdown previewer • Works offline • Saves locally in your browser</small>
+		</footer>
+
+		<!-- Libraries: marked (GFM), DOMPurify (sanitize), highlight.js -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/5.1.1/marked.min.js" integrity="" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.0/purify.min.js" integrity="" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js" integrity="" crossorigin="anonymous"></script>
+
+		<!-- App JS -->
+		<script src="assets/js/app.js" defer></script>
+	</body>
+</html>
