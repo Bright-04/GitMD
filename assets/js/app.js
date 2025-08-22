@@ -30,6 +30,10 @@ const fileInput = document.getElementById("fileInput");
 const loadSample = document.getElementById("loadSample");
 const clearEditor = document.getElementById("clearEditor");
 const copyHtml = document.getElementById("copyHtml");
+const downloadMd = document.getElementById("downloadMd");
+const exportHtml = document.getElementById("exportHtml");
+const copyMd = document.getElementById("copyMd");
+const toggleWrap = document.getElementById("toggleWrap");
 const themeToggle = document.getElementById("themeToggle");
 const dropHint = document.getElementById("dropHint");
 
@@ -153,6 +157,55 @@ copyHtml.addEventListener("click", async () => {
 	} catch (e) {
 		copyHtml.textContent = "Failed";
 		setTimeout(() => (copyHtml.textContent = "Copy HTML"), 1500);
+	}
+});
+
+// New polished toolbar actions
+downloadMd.addEventListener("click", () => {
+	const blob = new Blob([editor.value], { type: "text/markdown;charset=utf-8" });
+	const url = URL.createObjectURL(blob);
+	const a = document.createElement("a");
+	a.href = url;
+	a.download = "document.md";
+	document.body.appendChild(a);
+	a.click();
+	a.remove();
+	URL.revokeObjectURL(url);
+});
+
+exportHtml.addEventListener("click", () => {
+	const html = `<!doctype html><meta charset="utf-8"><title>Exported HTML</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown-light.min.css"><article class='markdown-body'>${preview.innerHTML}</article>`;
+	const blob = new Blob([html], { type: "text/html;charset=utf-8" });
+	const url = URL.createObjectURL(blob);
+	const a = document.createElement("a");
+	a.href = url;
+	a.download = "export.html";
+	document.body.appendChild(a);
+	a.click();
+	a.remove();
+	URL.revokeObjectURL(url);
+});
+
+copyMd.addEventListener("click", async () => {
+	try {
+		await navigator.clipboard.writeText(editor.value);
+		copyMd.textContent = "Copied!";
+		setTimeout(() => (copyMd.textContent = "Copy MD"), 1500);
+	} catch (e) {
+		copyMd.textContent = "Failed";
+		setTimeout(() => (copyMd.textContent = "Copy MD"), 1500);
+	}
+});
+
+// Toggle word wrap in editor
+toggleWrap.addEventListener("click", () => {
+	const isWrap = editor.classList.toggle("wrap-on");
+	if (isWrap) {
+		editor.classList.remove("wrap-off");
+		toggleWrap.textContent = "Wrap: On";
+	} else {
+		editor.classList.add("wrap-off");
+		toggleWrap.textContent = "Wrap: Off";
 	}
 });
 

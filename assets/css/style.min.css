@@ -1,4 +1,4 @@
-/* Minimal layout and theme for GitMD */
+/* Minified GitMD styles */
 :root {
 	--bg: #ffffff;
 	--text: #222;
@@ -6,7 +6,6 @@
 	--accent: #0366d6;
 	--pane-border: #e1e4e8;
 }
-
 body.dark {
 	--bg: #0d1117;
 	--text: #c9d1d9;
@@ -14,7 +13,6 @@ body.dark {
 	--accent: #58a6ff;
 	--pane-border: #30363d;
 }
-
 * {
 	box-sizing: border-box;
 }
@@ -42,7 +40,6 @@ body {
 	color: var(--muted);
 	font-size: 0.9rem;
 }
-
 .toolbar {
 	display: flex;
 	gap: 0.5rem;
@@ -70,7 +67,6 @@ body {
 	align-items: center;
 	gap: 0.3rem;
 }
-
 .container {
 	display: flex;
 	flex: 1;
@@ -90,7 +86,6 @@ body {
 	overflow: auto;
 	padding: 1.5rem;
 }
-
 #editor {
 	width: 100%;
 	height: 100%;
@@ -120,17 +115,6 @@ body {
 	pointer-events: auto;
 	background: rgba(0, 0, 0, 0.03);
 }
-
-/* Word wrap toggling for editor */
-.wrap-on {
-	white-space: pre-wrap;
-	word-wrap: break-word;
-}
-.wrap-off {
-	white-space: pre;
-	overflow: auto;
-}
-
 .markdown-body {
 	background: transparent;
 	color: var(--text);
@@ -143,8 +127,14 @@ body {
 	border-top: 1px solid var(--pane-border);
 	color: var(--muted);
 }
-
-/* Responsive stacking */
+.wrap-on {
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+.wrap-off {
+	white-space: pre;
+	overflow: auto;
+}
 @media (max-width: 800px) {
 	.container {
 		flex-direction: column;
@@ -157,8 +147,6 @@ body {
 		min-height: 35vh;
 	}
 }
-
-/* Accessibility focus */
 button:focus,
 .file-input-label:focus,
 #editor:focus,

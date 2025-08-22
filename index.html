@@ -12,7 +12,7 @@
 		<!-- Highlight.js theme (light) - we'll switch using a class for dark mode -->
 		<link id="hljs-theme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
 
-		<link rel="stylesheet" href="assets/css/style.css" />
+		<link rel="stylesheet" href="assets/css/style.min.css" />
 	</head>
 	<body class="light">
 		<header class="site-header">
@@ -26,7 +26,11 @@
 
 			<button id="loadSample" title="Load sample Markdown">Load sample</button>
 			<button id="clearEditor" title="Clear editor">Clear</button>
+			<button id="downloadMd" title="Download Markdown">Download MD</button>
+			<button id="exportHtml" title="Export rendered HTML">Export HTML</button>
 			<button id="copyHtml" title="Copy rendered HTML">Copy HTML</button>
+			<button id="copyMd" title="Copy Markdown">Copy MD</button>
+			<button id="toggleWrap" title="Toggle word wrap">Toggle Wrap</button>
 
 			<div class="spacer" aria-hidden="true"></div>
 			<label class="theme-toggle">
@@ -47,7 +51,7 @@
 		</main>
 
 		<footer class="site-footer">
-			<small>GitMD — static Markdown previewer • Works offline • Saves locally in your browser</small>
+			<small>GitMD - static Markdown previewer • Works offline • Saves locally in your browser</small>
 		</footer>
 
 		<!-- Libraries: marked (GFM), DOMPurify (sanitize), highlight.js -->
@@ -55,7 +59,7 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.0/purify.min.js" integrity="" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js" integrity="" crossorigin="anonymous"></script>
 
-		<!-- App JS -->
-		<script src="assets/js/app.js" defer></script>
+		<!-- App JS (minified) -->
+		<script src="assets/js/app.min.js" defer></script>
 	</body>
 </html>
