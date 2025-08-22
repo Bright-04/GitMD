@@ -1,4 +1,4 @@
-name: Build and Minify
+name: Build and Publish
 
 on:
     push:
@@ -7,10 +7,12 @@ on:
         branches: [main]
 
 jobs:
-    build:
+    build-and-deploy:
+        name: Build and deploy to gh-pages
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v4
+            - name: Checkout repository
+              uses: actions/checkout@v4
               with:
                   fetch-depth: 0
 
@@ -20,13 +22,24 @@ jobs:
                   node-version: "18"
 
             - name: Install dependencies
-              run: npm install --no-audit --no-fund
+              run: npm ci --silent
 
             - name: Run build (esbuild)
               run: npm run build
 
-            - name: Commit generated assets
-              uses: stefanzweifel/git-auto-commit-action@v4
+            - name: Prepare publish directory
+              run: |
+                  rm -rf public
+                  mkdir public
+                  # copy only the files needed for the static site
+                  cp index.html public/
+                  cp -r assets public/
+
+            - name: Deploy to gh-pages
+              uses: peaceiris/actions-gh-pages@v3
               with:
-                  commit_message: "chore: build assets [skip ci]"
-                  file_pattern: "assets/js/app.min.js,assets/css/style.min.css"
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  publish_dir: ./public
+                  publish_branch: gh-pages
+                  user_name: github-actions[bot]
+                  user_email: 41898282+github-actions[bot]@users.noreply.github.com
