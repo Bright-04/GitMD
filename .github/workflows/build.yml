@@ -1,0 +1,32 @@
+name: Build and Minify
+
+on:
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "18"
+
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Run build (esbuild)
+              run: npm run build
+
+            - name: Commit generated assets
+              uses: stefanzweifel/git-auto-commit-action@v4
+              with:
+                  commit_message: "chore: build assets [skip ci]"
+                  file_pattern: "assets/js/app.min.js,assets/css/style.min.css"

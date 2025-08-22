@@ -1,0 +1,11 @@
+{
+	"name": "gitmd",
+	"version": "1.0.0",
+	"private": true,
+	"devDependencies": {
+		"esbuild": "^0.18.17"
+	},
+	"scripts": {
+		"build": "esbuild assets/js/app.js --minify --outfile=assets/js/app.min.js && esbuild assets/css/style.css --minify --outfile=assets/css/style.min.css"
+	}
+}
